@@ -1,6 +1,8 @@
 <?php
 include('connection.php');
-$oldemail=$_GET['email'];
+if (isset($_REQUEST['un'])) {
+$oldemail=$_REQUEST['un'];
+}
 error_reporting(0);
 ?>
 	<!DOCTYPE html>
@@ -22,7 +24,7 @@ error_reporting(0);
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 signup_css">
 				<h2 class="text-center">Change</h2>
-				<form action="" method="GET">
+				<form action="" method="POST">
 					<div class="form-group">
 						<label for="fname">Full name:</label>
 						<input type="name" name="fname" class="form-control" id="fname">
@@ -40,15 +42,15 @@ error_reporting(0);
 			</div>
 			<?php 
 	
-	if($_GET['change'])
+	if($_POST['change'])
 	{
-		$fname=$_GET['fname'];
-		$email=$_GET['email'];
-		$pass=$_GET['pass'];
+		$fname=$_POST['fname'];
+		$email=$_POST['email'];
+		$pass=$_POST['pass'];
 		if($fname != "" && $email != "" && $pass != "")
 		{
 			
-			$query="UPDATE  test1 set fname='$fname', email='$email', pass='$pass' WHERE email='$oldemail'";
+			$query="UPDATE members SET fname='$fname', email='$email', pass='$pass' WHERE username='$oldemail'";
 			$data=mysqli_query($conn , $query);
 			if($data)
 			{

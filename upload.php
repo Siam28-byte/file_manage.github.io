@@ -106,7 +106,7 @@
   		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
 	</script>
-	<footer id="footer" class="bg-dark"> 
+	<footer id="footer" class="bg-dark fixed-bottom"> 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-4"></div>

@@ -45,7 +45,7 @@ $totalfile=mysqli_num_rows($data1);
 				<div class="dropdown">
 					<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
 					<div class="dropdown-menu">
-						<a href="#" class="dropdown-item ">Edit profile</a>
+						<a href="change.php?un=<?php echo $uname ?>" class="dropdown-item ">Edit profile</a>
 						<a href="#" class="dropdown-item ">Delete profile</a>
 						<a href="logout.php" class="dropdown-item ">log out</a>
 					</div>
