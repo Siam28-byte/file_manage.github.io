@@ -1,6 +1,42 @@
 <?php
 	require("connection.php");
 	error_reporting(0);
+	if(isset($_POST['signup'])){
+		$fname=$_POST['fname'];
+		$uname=$_POST['uname'];
+		$email=$_POST['email'];
+		$pass=sha1($_POST['pass']);
+		$gender=$_POST['gender'];
+		$name= $_FILES["upic"]["name"];
+		if($fname != "" && $uname != "" && $email != "" && $pass != "" && sha1($_POST['rpass'])!="" && $gender!=""){
+			if ($pass == sha1($_POST['rpass'])) {		
+				$name= $_FILES["upic"]["name"];
+				if ($name != "") {
+					$temp_name= $_FILES["upic"]["tmp_name"];
+					$folder="propic/".$name;
+					move_uploaded_file($temp_name, $folder);
+				}else{
+					if ($gender == "male") {
+						$folder="propic/default_pic_male.png";
+					}else{
+						$folder="propic/default_pic_female.png";
+					}
+				}											
+				$query="INSERT INTO members VALUES ('$uname', '$fname', '$email', '$pass','$folder','$gender')";
+				$data=mysqli_query($conn , $query);
+				if($data){
+					header('location:signin.php');
+				}else{
+					$failed_signup=1;
+				}
+										
+			}else{
+				$wrong_pass=1;
+			}
+		}else{
+			$fil_form=1;
+		}	
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +57,17 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 signup_css">
 				<h2 class="text-center">Sign up</h2>
+				<?php
+					if ($fil_form==1) {
+						echo "<h2>"."fill the form first"."</h2>";
+					}
+					if ($wrong_pass==1) {
+						echo "<h2>"."password not match"."</h2>";
+					}
+					if ($failed_signup==1) {
+						echo "<h2>"."somthing wrong "."</h2>";
+					}
+				?>
 				<form action="" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="fname">Full name:</label>
@@ -53,51 +100,14 @@
 						<label for="rpass"> Repeat Password:</label>
 						<input type="password" name="rpass" class="form-control" id="rpass">
 					</div>
+					<label>Profile Picture</label>
 					<div class="custom-file mb-3">
      	 				<input type="file" class="custom-file-input" id="customFile" name="upic" accept="image/*">
-     					 <label class="custom-file-label" for="customFile">Profile picture</label>
+     					 <label class="custom-file-label" for="customFile">Choose file</label>
    					 </div>
-
 					<input type="Submit" class="btn btn-outline-secondary" name="signup" value="Sign Up">
 					<a class="btn btn-danger float-right" href="signin.php">Sign in</a>
-					<p class="float-right">Already member?</p>	
-				<?php 
-					if(isset($_POST['signup'])){
-						$fname=$_POST['fname'];
-						$uname=$_POST['uname'];
-						$email=$_POST['email'];
-						$pass=sha1($_POST['pass']);
-						$gender=$_POST['gender'];
-						$name= $_FILES["upic"]["name"];
-						if($fname != "" && $uname != "" && $email != "" && $pass != "" && sha1($_POST['rpass'])!="" && $gender!=""){
-							if ($pass == sha1($_POST['rpass'])) {		
-								$name= $_FILES["upic"]["name"];
-								if ($name != "") {
-									$temp_name= $_FILES["upic"]["tmp_name"];
-									$folder="propic/".$name;
-								move_uploaded_file($temp_name, $folder);
-								}else{
-									if ($gender == "male") {
-										$folder="propic/default_pic_male.png";
-									}else{
-										$folder="propic/default_pic_female.png";
-									}
-								}											
-								$query="INSERT INTO members VALUES ('$uname', '$fname', '$email', '$pass','$folder','$gender')";
-								$data=mysqli_query($conn , $query);
-								if($data){
-									header('location:signin.php');
-								}else{
-									echo "sonthing wrong";
-								}
-								
-								
-							}else{
-								echo "password not match!";
-							}
-						}		
-					}
-				?>
+					<p class="float-right">Already member?</p>
 				</form>
 			</div>
 			<div class="col-sm-4"></div>
