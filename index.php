@@ -13,14 +13,13 @@ $info=mysqli_fetch_assoc($data);
 $query="select * from file_collection where username='$uname'";
 $data1=mysqli_query($conn,$query);
 $totalfile=mysqli_num_rows($data1);
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width , initial-scale=1">
-	<title>Home</title>
+	<title>Joy2362 | Home</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -31,7 +30,12 @@ $totalfile=mysqli_num_rows($data1);
 </head>
 <body>
 	<div class="container-fluid">
-		<a href="#">Brand logo</a>
+		<div class="row">
+			<div class="col-sm-12 name_head" >
+				<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
+				<p class="float-right ">Keep your file safe</p>
+			</div>
+		</div>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
 		<a href="#" class="navbar-brand">
@@ -103,7 +107,7 @@ $totalfile=mysqli_num_rows($data1);
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
-					<p class="text-primary">Copyright &copy;2019 All right reserved by abdullah zahid </p>
+					<p class="text-primary">Copyright &copy;2019 All right reserved by joy2362 </p>
 				</div>
 				<div class="col-sm-4">
 				

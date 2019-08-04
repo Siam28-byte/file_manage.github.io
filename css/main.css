@@ -7,8 +7,20 @@ font-family: 'Orbitron', sans-serif;
 font-family: 'Eagle Lake', cursive;
  */
 
+
+
 body{
 	background: #494949;
+}
+.name_head a h2{
+	padding-top: 5px;
+	color: #F44336;
+	font-family: 'Atomic Age', cursive;
+}
+.name_head p{
+	padding-top: 5px;
+	color:#d1d8e0;
+	font-size: 20px;
 }
 .profile{
 	background: #676767;

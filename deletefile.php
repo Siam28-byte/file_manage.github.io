@@ -12,5 +12,4 @@
 	$data=mysqli_query($conn,$query);
 	header('location:index.php');
 }
-
 ?>
