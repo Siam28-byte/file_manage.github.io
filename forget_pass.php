@@ -4,7 +4,7 @@ error_reporting(0);
 $value1=mt_rand(1, 2);
 $num1=mt_rand(1, 100);
 $num2=mt_rand(1, 100);
-if ($value1==1) {
+if ($value1==1){
 	$operation="+";
 	
 }else{
@@ -38,7 +38,6 @@ if (isset($_POST['change_pass'])){
 			}else{
 				$wrong_ans=1;
 			}
-		
 		}
 		else{
 			$filform=1;
