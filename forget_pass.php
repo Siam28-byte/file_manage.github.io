@@ -1,23 +1,44 @@
 <?php
 require("connection.php");
 error_reporting(0);
-session_start();
-if (isset($_POST['signin']))
-	{
-		$uname=$_POST['uname'];
-		$pass=sha1($_POST['pass']);
-		if($uname != "" && $_POST['pass'] != "") {
-			$query="SELECT * FROM members WHERE username='$uname' AND passwoard='$pass'";
+$value1=mt_rand(1, 2);
+$num1=mt_rand(1, 100);
+$num2=mt_rand(1, 100);
+if ($value1==1) {
+	$operation="+";
+	
+}else{
+	$operation="-";
+}
+if (isset($_POST['change_pass'])){
+	$uname=$_POST['uname'];
+	$email=$_POST['email'];
+	$pass=sha1($_POST['pass']);
+	$rpass=sha1($_POST['rpass']);
+	$user_ans=$_POST['security'];
+	if ($operation=="+") {
+		$ans=$num1+$num2;
+	}else{
+		$ans=$num1-$num2;
+	}
+	
+	echo "<p class=\"text-primary\">".$user_ans."</p>"."</br>";
+	echo "<p class=\"text-primary\">".$ans."</p>";
+	if($uname != "" && $_POST['pass'] != "" && $rpass!='' && $user_ans != '') {
+		if ($user_ans == $ans) {
+			$query="SELECT * FROM members WHERE username='$uname' AND email='$email'";
 			$data=mysqli_query($conn,$query);
 			$total=mysqli_num_rows($data);
-			if($total==1)
-			{
-				$_SESSION['uname']=$uname;
-				header('location:index.php');
+			if($total==1){
+				$conf=1;
 			}
-			else{
-				$logfailed=1;
+				else{
+					$logfailed=1;
+				}
+			}else{
+				$wrong_ans=1;
 			}
+		
 		}
 		else{
 			$filform=1;
@@ -42,13 +63,19 @@ if (isset($_POST['signin']))
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 log_css">
-				<h2 class="text-center">Sign in</h2>
+				<h2 class="text-center">Change Password</h2>
 					<?php 
 						if ($logfailed==1) {
 							echo "Username or Password not match";
 						}
+						if ($conf==1) {
+							echo "temp";
+						}
 						if ($filform==1) {
 							echo "File the form first";
+						}
+						if ($wrong_ans==1) {
+							echo "Security ans is wrong";
 						}
 					 ?>
 				<form action="" method="POST">
@@ -57,13 +84,34 @@ if (isset($_POST['signin']))
 						<input type="name" name="uname" class="form-control" id="uname">
 					</div>
 					<div class="form-group">
-						<label for="pass">Password:</label>
+						<label for="email">Email:</label>
+						<input type="email" name="email" class="form-control" id="email">
+					</div>
+
+					<div class="form-group">
+						<label for="pass">New Password:</label>
 						<input type="password" name="pass" class="form-control" id="pass">
 					</div>
 
-					<input type="Submit" class="btn btn-outline-secondary" name="signin" value="Sign In">
-					<a href="forget_pass.php">Forget password</a>
-					<a class="btn btn-danger float-right" href="signup.php">Sign up</a>		
+					<div class="form-group">
+						<label for="rpass">Repeat Password:</label>
+						<input type="password" name="rpass" class="form-control" id="rpass">
+					</div>
+					<div class="form-group">
+						<label> Security Question</label>
+						<?php
+							if ($operation=="+") {
+								echo "<label>".$num1 . "+".$num2."</label>";		
+							}else{
+								echo "<label>".$num1 . "-".$num2."</label>";
+							}
+						?>
+					</div>
+					<div class="form-group">
+						<label for="security"> Ans</label>
+						<input type="text" name="security" class=" form-control" id="security">
+					</div>
+					<input type="Submit" class="btn btn-outline-secondary" name="change_pass" value="Change">	
 				</form>
 			</div>
 			<div class="col-sm-4"></div>
