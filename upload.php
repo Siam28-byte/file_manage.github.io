@@ -30,27 +30,32 @@
 		<a href="#" class="navbar-brand">
 			<img src="img/img1.jpg" style="width: 50px; height: 25px;">
 		</a>
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a href="index.php" class="nav-link ">home</a>
-			</li>
-			<li class="nav-item">
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
-					<div class="dropdown-menu">
-						<a href="#" class="dropdown-item ">Edit profile</a>
-						<a href="#" class="dropdown-item ">Delete profile</a>
-						<a href="logout.php" class="dropdown-item ">log out</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsenav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a href="index.php" class="nav-link ">home</a>
+				</li>
+				<li class="nav-item">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
+						<div class="dropdown-menu">
+							<a href="#" class="dropdown-item ">Edit profile</a>
+							<a href="#" class="dropdown-item ">Delete profile</a>
+							<a href="logout.php" class="dropdown-item ">log out</a>
+						</div>
 					</div>
-				</div>
-			</li>
-			<li class="nav-item">
-				<a href="upload.php" class="nav-link active">upload</a>
-			</li>
-			<li class="nav-item">
-				<a href="about.php" class="nav-link">About us</a>
-			</li>
-		</ul>
+				</li>
+				<li class="nav-item">
+					<a href="upload.php" class="nav-link active">upload</a>
+				</li>
+				<li class="nav-item">
+					<a href="about.php" class="nav-link">About us</a>
+				</li>
+			</ul>
+		</div>
 	</nav>
 	
 	<div class="container-fluid">
@@ -58,43 +63,38 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 signup_css">
 				<h2 class="text-center">Upload</h2>
-				<form action="" method="POST" enctype="multipart/form-data">
-					<div>
+				<?php
+					if ($_GET['er']==1) {
+						?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> Somthing wrong try again!!							
+							</div>
+						<?php
+					}
+					if ($_GET['er']==2) {
+						?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> File the form first!!							
+							</div>
+						<?php
+					}
+				?>
+				<form action="upload_confirm.php" method="POST" enctype="multipart/form-data">
 						<label for="category">Category:</label>
-					<select name="category" class="custom-select" id="category">
-						<option disabled selected>Choose category</option>
-						<option value="image">Image</option>
-						<option value="pdf">Pdf</option>
-						<option value="video">video</option>
-						<option value="other">Other</option>
-					</select>
-					</div>
+						<select name="category" class="custom-select" id="category">
+							<option disabled selected>Choose category</option>
+							<option value="image">Image</option>
+							<option value="pdf">Pdf</option>
+							<option value="video">video</option>
+							<option value="other">Other</option>
+						</select>
 					<div class="custom-file mb-3">
      	 				<input type="file" class="custom-file-input" id="customFile" name="fileup">
      					 <label class="custom-file-label" for="customFile">Choose file</label>
    					 </div>
-
 					<input type="Submit" class="btn btn-outline-secondary" name="upload" value="Upload">
-				<?php 
-					if(isset($_POST['upload'])){
-						$category=$_POST['category'];
-						if ($category) {
-							$name= $_FILES["fileup"]["name"];
-							$temp_name= $_FILES["fileup"]["tmp_name"];
-							$folder="file/".$name;
-							move_uploaded_file($temp_name, $folder);
-							$query="INSERT INTO file_collection VALUES (NULL, '$name','$folder','$uname','$category')";
-							$data=mysqli_query($conn , $query);
-							if($data){
-								header('location:index.php');
-							}else{
-								echo "somthing wrong";
-							}
-						}else{
-							echo "select category first";
-						}
-					}
-				?>
 				</form>
 			</div>
 			<div class="col-sm-4"></div>

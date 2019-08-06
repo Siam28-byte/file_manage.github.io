@@ -1,28 +1,5 @@
 <?php
-require("connection.php");
 error_reporting(0);
-session_start();
-if (isset($_POST['signin']))
-	{
-		$uname=$_POST['uname'];
-		$pass=sha1($_POST['pass']);
-		if($uname != "" && $_POST['pass'] != "") {
-			$query="SELECT * FROM members WHERE username='$uname' AND passwoard='$pass'";
-			$data=mysqli_query($conn,$query);
-			$total=mysqli_num_rows($data);
-			if($total==1)
-			{
-				$_SESSION['uname']=$uname;
-				header('location:index.php');
-			}
-			else{
-				$logfailed=1;
-			}
-		}
-		else{
-			$filform=1;
-		}
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,14 +21,24 @@ if (isset($_POST['signin']))
 			<div class="col-sm-4 log_css">
 				<h2 class="text-center">Sign in</h2>
 					<?php 
-						if ($logfailed==1) {
-							echo "Username or Password not match";
+						if ($_GET['er']==1) {
+							?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> Username or Password not match!!							
+							</div>
+							<?php
 						}
-						if ($filform==1) {
-							echo "File the form first";
+						if ($_GET['er']==2) {
+							?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> Fill the form first!!							
+							</div>
+							<?php
 						}
 					 ?>
-				<form action="" method="POST">
+				<form action="signin_confirm.php" method="POST">
 					<div class="form-group">
 						<label for="uname">Username:</label>
 						<input type="name" name="uname" class="form-control" id="uname">
@@ -60,9 +47,8 @@ if (isset($_POST['signin']))
 						<label for="pass">Password:</label>
 						<input type="password" name="pass" class="form-control" id="pass">
 					</div>
-
-					<input type="Submit" class="btn btn-outline-secondary" name="signin" value="Sign In">
-					<a href="forget_pass.php">Forget password</a>
+					<input type="Submit" class="btn btn-outline-primary" name="signin" value="Sign In">
+					<a href="forget_pass1.php">Forget password</a>
 					<a class="btn btn-danger float-right" href="signup.php">Sign up</a>		
 				</form>
 			</div>

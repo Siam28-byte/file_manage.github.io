@@ -2,11 +2,6 @@
 require('connection.php');
 session_start();
 $uname=$_SESSION['uname'];
-if ($uname == true) {
-	
-}else{
-	header("location:signin.php");
-}
 $query="select * from members where username='$uname'";
 $data=mysqli_query($conn,$query);
 $info=mysqli_fetch_assoc($data);

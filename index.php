@@ -41,27 +41,33 @@ $totalfile=mysqli_num_rows($data1);
 		<a href="#" class="navbar-brand">
 			<img src="img/img1.jpg" style="width: 50px; height: 25px;">
 		</a>
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a href="#" class="nav-link active">Home</a>
-			</li>
-			<li class="nav-item">
-				<div class="dropdown">
-					<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
-					<div class="dropdown-menu">
-						<a href="change.php?un=<?php echo $uname ?>" class="dropdown-item ">Edit profile</a>
-						<a href="delete.php?un=<?php echo $uname ?>" class="dropdown-item ">Delete profile</a>
-						<a href="logout.php" class="dropdown-item ">log out</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsenav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a href="#" class="nav-link active">Home</a>
+				</li>
+				<li class="nav-item">
+					<div class="dropdown">
+						<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
+						<div class="dropdown-menu">
+							<a href="change.php>" class="dropdown-item ">Update Profile Pictute</a>
+							<a href="change.php" class="dropdown-item ">Edit profile</a>
+							<a href="delete.php" class="dropdown-item ">Delete profile</a>
+							<a href="logout.php" class="dropdown-item ">log out</a>
+						</div>
 					</div>
-				</div>
-			</li>
-			<li class="nav-item">
-				<a href="upload.php" class="nav-link ">upload</a>
-			</li>
-			<li class="nav-item">
-				<a href="about.php" class="nav-link">About us</a>
-			</li>
-		</ul>
+				</li>
+				<li class="nav-item">
+					<a href="upload.php" class="nav-link ">upload</a>
+				</li>
+				<li class="nav-item">
+					<a href="about.php" class="nav-link">About us</a>
+				</li>
+			</ul>
+		</div>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
@@ -110,7 +116,6 @@ $totalfile=mysqli_num_rows($data1);
 					<p class="text-primary">Copyright &copy;2019 All right reserved by joy2362 </p>
 				</div>
 				<div class="col-sm-4">
-				
 				</div>
 				</div>
 			</div>

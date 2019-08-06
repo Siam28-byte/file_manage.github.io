@@ -1,11 +1,7 @@
 <?php
-include('connection.php');
-if (isset($_REQUEST['un'])) {
-$oldemail=$_REQUEST['un'];
-}
 error_reporting(0);
 ?>
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -24,7 +20,25 @@ error_reporting(0);
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 signup_css">
 				<h2 class="text-center">Change</h2>
-				<form action="" method="POST">
+				<?php
+					if ($_GET['er']==1) {
+						?>
+						<div class="alert alert-warning alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Warning!</strong> Fill the form first!!							
+						</div>
+						<?php
+					}
+					if ($_GET['er']==2) {
+						?>
+						<div class="alert alert-warning alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Warning!</strong> Somthing wrong!!							
+						</div>
+						<?php
+					}
+				?>
+				<form action="change_confirm.php" method="POST">
 					<div class="form-group">
 						<label for="fname">Full name:</label>
 						<input type="name" name="fname" class="form-control" id="fname">
@@ -41,30 +55,9 @@ error_reporting(0);
 				</form>
 			</div>
 			<?php 
-	
 	if($_POST['change'])
 	{
-		$fname=$_POST['fname'];
-		$email=$_POST['email'];
-		$pass=$_POST['pass'];
-		if($fname != "" && $email != "" && $pass != "")
-		{
-			
-			$query="UPDATE members SET fname='$fname', email='$email', pass='$pass' WHERE username='$oldemail'";
-			$data=mysqli_query($conn , $query);
-			if($data)
-			{
-				header("location:index.php");
-			}
-			else
-			{
-					echo "somthing wrong try again !!!";
-			}
-		}
-		else
-		{
-			echo "Fill the form first !!!";
-		}	
+		
 	}
 	?>
 			<div class="col-sm-4"></div>
