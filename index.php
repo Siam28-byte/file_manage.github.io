@@ -98,9 +98,7 @@ $totalfile=mysqli_num_rows($data1);
 								echo "<tr>"."<td>".$file['filename']."</td>";
 								echo "<td>".$file['category']."</td>";
 								echo "<td>".$file['date']."</td>";
-								
 								echo "<td>".$file['size']."</td>";
-								
 								echo "<td>".pathinfo($file['fileloc'],PATHINFO_EXTENSION )."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";

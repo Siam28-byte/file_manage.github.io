@@ -12,9 +12,9 @@ if($fname != "" && $uname != "" && $email != "" && $pass != "" && sha1($_POST['r
 		$name= $_FILES["upic"]["name"];
 		if ($name == "") {			
 			if ($gender == "male") {
-				$folder="propic/default_pic_male.png";
+				$folder="propic/male.png";
 			}else{
-				$folder="propic/default_pic_female.png";
+				$folder="propic/female.png";
 			}
 		}else{
 			$temp_name= $_FILES["upic"]["tmp_name"];
