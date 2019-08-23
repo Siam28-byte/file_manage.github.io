@@ -1,7 +1,6 @@
 
 body{
 	background: #0a3d62;
-
 }
 .team{
 	overflow: hidden;
@@ -24,20 +23,17 @@ body{
 .team_img{
 	margin-bottom: 40px;
 }
-.team_img a{
+.team_img a img{
 	display: inline-block;
 	margin: 0px 30px;
 	width: 160px;
 	height: 160px;
-	overflow: hidden;
 	border-radius: 50%;
-}
-.team_img a img{
-	width: 100%;
+	overflow: hidden;
 	filter: grayscale(100%);
-	transition: 0.4s all;
+	transition: .7s all;
 }
-.team_img a:hover >img{
+.team_img a img:hover{
 	filter: none;
 }
 .select{
@@ -57,6 +53,7 @@ body{
 	font-size: 17px;
 	margin-bottom: 20px ;
 }
+
 .custombtn{
 	text-align: center;
 	display: inline-block;
@@ -98,12 +95,11 @@ body{
 	0%{
 		left: -110%;
 		top: 90%;
-		}50%{
-			left: 10%;
-			top: -30%;
-
-		}100%{
-			left: -10%;
-			top:-10%;
-		}
+	}50%{
+		left: 10%;
+		top: -30%;
+	}100%{
+		left: -10%;
+		top:-10%;
+	}
 }

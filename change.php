@@ -18,50 +18,44 @@ error_reporting(0);
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4"></div>
-			<div class="col-sm-4 signup_css">
-				<h2 class="text-center">Change</h2>
-				<?php
-					if ($_GET['er']==1) {
-						?>
-						<div class="alert alert-warning alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<strong>Warning!</strong> Fill the form first!!							
+				<div class="col-sm-4 signup_css">
+					<h2 class="text-center">Change</h2>
+					<?php
+						if ($_GET['er']==1) {
+							?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> Fill the form first!!							
+							</div>
+							<?php
+						}
+						if ($_GET['er']==2) {
+							?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> Somthing wrong!!							
+							</div>
+							<?php
+						}
+					?>
+					<form action="change_confirm.php" method="POST">
+						<div class="form-group">
+							<label for="fname">Full name:</label>
+							<input type="name" name="fname" class="form-control" id="fname">
 						</div>
-						<?php
-					}
-					if ($_GET['er']==2) {
-						?>
-						<div class="alert alert-warning alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<strong>Warning!</strong> Somthing wrong!!							
+						<div class="form-group">
+							<label for="email">Email Address:</label>
+							<input type="email" name="email" class="form-control" id="email">
 						</div>
-						<?php
-					}
-				?>
-				<form action="change_confirm.php" method="POST">
-					<div class="form-group">
-						<label for="fname">Full name:</label>
-						<input type="name" name="fname" class="form-control" id="fname">
-					</div>
-					<div class="form-group">
-						<label for="email">Email Address:</label>
-						<input type="email" name="email" class="form-control" id="email">
-					</div>
-					<div class="form-group">
-						<label for="pass">Password:</label>
-						<input type="password" name="pass" class="form-control" id="pass">
-					</div>
-					<input type="Submit" class="btn btn-outline-secondary" name="change" value="Change">
-				</form>
-			</div>
-			<?php 
-	if($_POST['change'])
-	{
-		
-	}
-	?>
+						<div class="form-group">
+							<label for="pass">Password:</label>
+							<input type="password" name="pass" class="form-control" id="pass">
+						</div>
+						<input type="Submit" class="btn btn-outline-secondary" name="change" value="Change">
+					</form>
+				</div>
 			<div class="col-sm-4"></div>
 		</div>
 	</div>
-	</body>
+</body>
 </html>

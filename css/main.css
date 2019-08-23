@@ -24,17 +24,14 @@ body{
 }
 .profile{
 	background: #676767;
-	height: 800px;
 	margin:20px;
-	justify-content: center;
 	border-radius: 10px;
 	padding-top: 10px;
 }
 .profile img{
-	width: 180px;
-	height: 180px;
+	width: 100px;
+	height: 100px;
 	margin-bottom: 10px;
-	
 }
 .profile h2{
 	font-family: 'Merriweather', serif;

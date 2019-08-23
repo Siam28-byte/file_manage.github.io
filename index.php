@@ -72,13 +72,13 @@ $totalfile=mysqli_num_rows($data1);
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2 profile">
-				<img src="<?php echo $info['propic']; ?>" class="rounded-circle">
+				<img src="<?php echo $info['propic']; ?>" class="rounded-circle justify-content-center ml-3 mt-3">
 				<h2 class="text-center"> <?php echo $info['name']; ?> </h2>
 				<h4 class="text-center">Total file:<?php echo $totalfile; ?></h4>
 			</div>
 			<div class="col-sm-9 " style="margin-top: 20px;">
 				<?php
-					if ($totalfile !=0) {	
+					if ($totalfile != 0) {	
 						?>				
 						<table class="table table-hover table-dark table-striped"> 
 						<thead>
@@ -90,13 +90,13 @@ $totalfile=mysqli_num_rows($data1);
 						</thead>
 						<tbody>
 						<?php					
-						while ($file=mysqli_fetch_assoc($data1)) {
-							echo "<tr>"."<td>".$file['filename']."</td>";
-							echo "<td>".$file['category']."</td>";
-							echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
-							echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";
-						}
-							echo "</tr>";	
+							while ($file=mysqli_fetch_assoc($data1)){
+								echo "<tr>"."<td>".$file['filename']."</td>";
+								echo "<td>".$file['category']."</td>";
+								echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
+								echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";
+							}
+								echo "</tr>";	
 						?>
 						</tbody>
 						</table>

@@ -5,7 +5,7 @@ session_start();
 $uname=$_SESSION['uname'];
 $fname=$_POST['fname'];
 $email=$_POST['email'];
-$pass=$_POST['pass'];
+$pass=sha1($_POST['pass']);
 if($fname != "" && $email != "" && $pass != ""){
 	$query="UPDATE members SET name='$fname', email='$email', passwoard='$pass' WHERE username='$uname'";
 	$data=mysqli_query($conn , $query);
