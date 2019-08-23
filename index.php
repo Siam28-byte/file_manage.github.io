@@ -2,9 +2,11 @@
 require('connection.php');
 session_start();
 $uname=$_SESSION['uname'];
-if ($uname == true) {
+if ($uname == true) 
+{
 	
-}else{
+}else
+{
 	header("location:signin.php");
 }
 $query="select * from members where username='$uname'";
@@ -85,6 +87,7 @@ $totalfile=mysqli_num_rows($data1);
 						<tr>
 						<th>Name</th>
 						<th>Category</th>
+						<th>Uploaded</th>
 						<th colspan="2" class="text-center">Operation</th>
 						</tr>
 						</thead>
@@ -93,6 +96,7 @@ $totalfile=mysqli_num_rows($data1);
 							while ($file=mysqli_fetch_assoc($data1)){
 								echo "<tr>"."<td>".$file['filename']."</td>";
 								echo "<td>".$file['category']."</td>";
+								echo "<td>".$file['date']."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";
 							}

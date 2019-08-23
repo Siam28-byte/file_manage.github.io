@@ -9,7 +9,10 @@ if ($category) {
 	$temp_name= $_FILES["fileup"]["tmp_name"];
 	$folder="file/".$name;
 	move_uploaded_file($temp_name, $folder);
-	$query="INSERT INTO file_collection VALUES (NULL, '$name','$folder','$uname','$category')";
+	date_default_timezone_set("Asia/dhaka");
+	$format="%d/%m/%Y %H:%M:%S";
+	$strf=strftime($format);
+	$query="INSERT INTO file_collection VALUES (NULL, '$name','$folder','$uname','$category','$strf')";
 	$data=mysqli_query($conn , $query);
 	if($data){
 		header('location:index.php');

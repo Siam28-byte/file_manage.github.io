@@ -22,7 +22,12 @@ $info=mysqli_fetch_assoc($data);
 </head>
 <body>
 	<div class="container-fluid">
-		<a href="#">Brand logo</a>
+		<div class="row">
+			<div class="col-sm-12 name_head" >
+				<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
+				<p class="float-right ">Keep your file safe</p>
+			</div>
+		</div>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
 		<a href="#" class="navbar-brand">
@@ -95,7 +100,7 @@ $info=mysqli_fetch_assoc($data);
 					<div class="sub text-center text-uppercase">Web developer</div>
 					<span class="line"></span>
 					<p class="text-justify">
-						Qui consequat labore commodo velit aliqua amet nostrud cupidatat proident aute eiusmod non. Ullamco commodo dolor ut dolore officia fugiat consequat tempor ad eu nisi tempor reprehenderit nisi id.
+						A Web developer is someone who designs and writes codes for web based applications and portals and websites. Their job is to maintain web-based applications, portals, and websites.
 					</p>
 					<a class="custombtn" href="https://www.facebook.com/abdullahzahidjoy" target="_blank">
 						<i class="fab fa-facebook-f"></i>
@@ -144,12 +149,9 @@ $info=mysqli_fetch_assoc($data);
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
-					<p class="text-primary">Copyright &copy;2019 All right reserved by abdullah zahid </p>
+					<p class="text-info">Copyright &copy;2019 All right reserved by joy2362</p>
 				</div>
-				<div class="col-sm-4">
-				
-				</div>
-				</div>
+				<div class="col-sm-4"></div>
 			</div>
 		</div>
 	</footer>

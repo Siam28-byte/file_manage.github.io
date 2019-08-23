@@ -57,7 +57,6 @@
 			</ul>
 		</div>
 	</nav>
-	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4"></div>
@@ -111,7 +110,7 @@
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
-					<p class="text-primary">Copyright &copy;2019 All right reserved by abdullah zahid</p>
+					<p class="text-info">Copyright &copy;2019 All right reserved by abdullah zahid</p>
 				</div>
 				<div class="col-sm-4">
 				</div>
