@@ -32,12 +32,9 @@ $totalfile=mysqli_num_rows($data1);
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-12 name_head" >
-				<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
-				<p class="float-right ">Keep your file safe</p>
-			</div>
-		</div>
+		<?php
+		require('header.php');
+		?>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
 		<a href="#" class="navbar-brand">
@@ -55,7 +52,7 @@ $totalfile=mysqli_num_rows($data1);
 					<div class="dropdown">
 						<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
 						<div class="dropdown-menu">
-							<a href="change.php>" class="dropdown-item ">Update Profile Pictute</a>
+							<a href="change.php" class="dropdown-item ">Update Profile Pictute</a>
 							<a href="change.php" class="dropdown-item ">Edit profile</a>
 							<a href="delete.php" class="dropdown-item ">Delete profile</a>
 							<a href="logout.php" class="dropdown-item ">log out</a>
@@ -74,7 +71,9 @@ $totalfile=mysqli_num_rows($data1);
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2 profile">
-				<img src="<?php echo $info['propic']; ?>" class="rounded-circle justify-content-center ml-3 mt-3">
+				<div class="pro_pic">
+				<img src="<?php echo $info['propic']; ?>" class="rounded-circle " align="middle">
+			</div>
 				<h2 class="text-center"> <?php echo $info['name']; ?> </h2>
 				<h4 class="text-center">Total file:<?php echo $totalfile; ?></h4>
 			</div>
@@ -88,6 +87,8 @@ $totalfile=mysqli_num_rows($data1);
 						<th>Name</th>
 						<th>Category</th>
 						<th>Uploaded</th>
+						<th>Size</th>
+						<th>type</th>
 						<th colspan="2" class="text-center">Operation</th>
 						</tr>
 						</thead>
@@ -97,6 +98,10 @@ $totalfile=mysqli_num_rows($data1);
 								echo "<tr>"."<td>".$file['filename']."</td>";
 								echo "<td>".$file['category']."</td>";
 								echo "<td>".$file['date']."</td>";
+								
+								echo "<td>".$file['size']."</td>";
+								
+								echo "<td>".pathinfo($file['fileloc'],PATHINFO_EXTENSION )."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";
 							}
@@ -112,7 +117,7 @@ $totalfile=mysqli_num_rows($data1);
 			</div>
 		</div>
 	</div>
-	<footer id="footer" class="bg-dark"> 
+	<footer id="footer" class="bg-dark fixed-bottom"> 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-4"></div>

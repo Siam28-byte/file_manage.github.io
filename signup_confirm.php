@@ -10,16 +10,16 @@ $name= $_FILES["upic"]["name"];
 if($fname != "" && $uname != "" && $email != "" && $pass != "" && sha1($_POST['rpass'])!="" && $gender!=""){
 	if ($pass == sha1($_POST['rpass'])) {		
 		$name= $_FILES["upic"]["name"];
-		if ($name != "") {
-			$temp_name= $_FILES["upic"]["tmp_name"];
-			$folder="propic/".$name;
-			move_uploaded_file($temp_name, $folder);
-		}else{
+		if ($name == "") {			
 			if ($gender == "male") {
 				$folder="propic/default_pic_male.png";
 			}else{
 				$folder="propic/default_pic_female.png";
 			}
+		}else{
+			$temp_name= $_FILES["upic"]["tmp_name"];
+			$folder="propic/".$name;
+			move_uploaded_file($temp_name, $folder);			
 		}											
 			$query="INSERT INTO members VALUES ('$uname', '$fname', '$email', '$pass','$folder','$gender')";
 			$data=mysqli_query($conn , $query);

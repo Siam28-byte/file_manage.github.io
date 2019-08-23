@@ -20,12 +20,28 @@
 	<script src="https://kit.fontawesome.com/f717478b5d.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Atomic+Age|Eagle+Lake|Fjalla+One|Merriweather|Orbitron&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/signup_in.css">
+	<style type="text/css">
+		.name_head a h2{
+			padding-top: 5px;
+			color: #F44336;
+			font-family: 'Atomic Age', cursive;
+		}
+		.name_head p{
+			padding-top: 5px;
+			color:#d1d8e0;
+			font-size: 20px;
+		}
+	</style>
 </head>
 <body>
 	<div class="container-fluid">
-		<a href="#">Brand logo</a>
+		<div class="row">
+			<div class="col-sm-12 name_head" >
+				<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
+				<p class="float-right ">Keep your file safe</p>
+			</div>
+		</div>
 	</div>
-	
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
 		<a href="#" class="navbar-brand">
 			<img src="img/img1.jpg" style="width: 50px; height: 25px;">
@@ -76,6 +92,14 @@
 							<div class="alert alert-warning alert-dismissible">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
 								<strong>Warning!</strong> File the form first!!							
+							</div>
+						<?php
+					}
+					if ($_GET['er']==3) {
+						?>
+							<div class="alert alert-warning alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Warning!</strong> File size must be less then 50mb							
 							</div>
 						<?php
 					}
