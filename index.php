@@ -101,7 +101,6 @@ $data1=mysqli_query($conn,$sql);
 								<th>Name</th>
 								<th>Category</th>
 								<th>Uploaded</th>
-								<th>Size</th>
 								<th>type</th>
 								<th colspan="2" class="text-center">Operation</th>
 							</tr>
@@ -110,7 +109,6 @@ $data1=mysqli_query($conn,$sql);
 								echo "<tr>"."<td>".$file['filename']."</td>";
 								echo "<td>".$file['category']."</td>";
 								echo "<td>".$file['date']."</td>";
-								echo "<td>".$file['size']."</td>";
 								echo "<td>".pathinfo($file['fileloc'],PATHINFO_EXTENSION)."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";

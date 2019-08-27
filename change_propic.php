@@ -47,14 +47,14 @@ $totalfile=mysqli_num_rows($data1);
 <body>
 	<div class="container-fluid">
 		<div class="row">
-	<div class="col-sm-12 name_head" >
-		<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
-		<p class="float-right ">Keep your file safe</p>
-	</div>
-</div>
+			<div class="col-sm-12 name_head" >
+				<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
+				<p class="float-right ">Keep your file safe</p>
+			</div>
+		</div>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
-		<a href="index.php" class="navbar-brand">
+		<a href="#" class="navbar-brand">
 			<img src="img/img1.jpg" style="width: 50px; height: 25px;">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenav">
@@ -63,16 +63,16 @@ $totalfile=mysqli_num_rows($data1);
 		<div class="collapse navbar-collapse" id="collapsenav">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a href="#" class="nav-link active">Home</a>
+					<a href="index.php" class="nav-link active">Home</a>
 				</li>
 				<li class="nav-item">
 					<div class="dropdown">
 						<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
 						<div class="dropdown-menu">
-							<a href="change_propic.php" class="dropdown-item ">Update Profile Pictute</a>
-							<a href="change.php" class="dropdown-item ">Edit profile</a>
-							<a href="delete.php" class="dropdown-item ">Delete profile</a>
-							<a href="logout.php" class="dropdown-item ">log out</a>
+							<a href="change_propic.php" class="dropdown-item">Update Profile Pictute</a>
+							<a href="change.php" class="dropdown-item">Change password</a>
+							<a href="delete.php" class="dropdown-item">Delete profile</a>
+							<a href="logout.php" class="dropdown-item">log out</a>
 						</div>
 					</div>
 				</li>

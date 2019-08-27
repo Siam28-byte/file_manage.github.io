@@ -52,20 +52,21 @@
 		<div class="collapse navbar-collapse" id="collapsenav">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a href="index.php" class="nav-link ">home</a>
+					<a href="index.php" class="nav-link active">Home</a>
 				</li>
 				<li class="nav-item">
 					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
+						<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
 						<div class="dropdown-menu">
-							<a href="#" class="dropdown-item ">Edit profile</a>
-							<a href="#" class="dropdown-item ">Delete profile</a>
-							<a href="logout.php" class="dropdown-item ">log out</a>
+							<a href="change_propic.php" class="dropdown-item">Update Profile Pictute</a>
+							<a href="change.php" class="dropdown-item">Change password</a>
+							<a href="delete.php" class="dropdown-item">Delete profile</a>
+							<a href="logout.php" class="dropdown-item">log out</a>
 						</div>
 					</div>
 				</li>
 				<li class="nav-item">
-					<a href="upload.php" class="nav-link active">upload</a>
+					<a href="upload.php" class="nav-link ">upload</a>
 				</li>
 				<li class="nav-item">
 					<a href="about.php" class="nav-link">About us</a>

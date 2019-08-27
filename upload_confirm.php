@@ -15,7 +15,7 @@ if ($category && $name) {
 		date_default_timezone_set("Asia/dhaka");
 		$format="%d/%m/%Y %H:%M:%S";
 		$time=strftime($format);
-		$query="INSERT INTO file_collection VALUES (NULL, '$name','$folder','$uname','$category','$time','$filesize')";
+		$query="INSERT INTO file_collection VALUES (NULL, '$name','$folder','$uname','$category','$time')";
 		$data=mysqli_query($conn , $query);
 		if($data){
 			header('location:index.php');
