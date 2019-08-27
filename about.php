@@ -2,7 +2,7 @@
 require('connection.php');
 session_start();
 session_regenerate_id( true);
-if ($uname == true) 
+if ($_SESSION['uname']) 
 {
 	
 }else
@@ -85,15 +85,15 @@ $info=mysqli_fetch_assoc($data);
 					<div class="sub text-center text-uppercase">Web designer</div>
 					<span class="line"></span>
 					<p class="text-justify">
-						In in. Labore sint dolore ad tempor dolore nulla incididunt amet mollit id ut sed deserunt aute sit cupidatat sint in quis nisi anim enim sit laborum voluptate do proident labore in est pariatur eiusmod ullamco in consectetur pariatur enim.
+						A web designer creates the look, layout, and features of a website. The job involves understanding both graphic design and computer programming
 					</p>
-					<a class="custombtn" href="https://www.facebook.com/abdullahzahidjoy" target="_blank">
+					<a class="custombtn" href="#" target="_blank">
 						<i class="fab fa-facebook-f"></i>
 					</a>
-					<a class="custombtn" href="https://twitter.com/Abdulla57096512" target="_blank">
+					<a class="custombtn" href="#" target="_blank">
 						<i class="fab fa-twitter"></i>
 					</a>
-					<a class="custombtn" href="mailto:abdullahzahidjoy@gmail.com">
+					<a class="custombtn" href="#">
 						<i class="fab fa-google"></i>
 					</a>
 					<a class="custombtn" href="#">
@@ -131,15 +131,15 @@ $info=mysqli_fetch_assoc($data);
 					<div class="sub text-center text-uppercase">Web designer</div>
 					<span class="line"></span>
 					<p class="text-justify">
-						Smart-cardboard tanto neon tattoo saturation point dome monofilament long-chain hydrocarbons skyscraper grenade urban. Sentient bomb franchise gang math-footage Shibuya into chrome katana BASE jump. 
+						A web designer creates the look, layout, and features of a website. The job involves understanding both graphic design and computer programming
 					</p>
-					<a class="custombtn" href="https://www.facebook.com/abdullahzahidjoy" target="_blank">
+					<a class="custombtn" href="#" target="_blank">
 						<i class="fab fa-facebook-f"></i>
 					</a>
-					<a class="custombtn" href="https://twitter.com/Abdulla57096512" target="_blank">
+					<a class="custombtn" href="#" target="_blank">
 						<i class="fab fa-twitter"></i>
 					</a>
-					<a class="custombtn" href="mailto:abdullahzahidjoy@gmail.com">
+					<a class="custombtn" href="#">
 						<i class="fab fa-google"></i>
 					</a>
 					<a class="custombtn" href="#">
