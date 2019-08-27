@@ -19,9 +19,9 @@ if ($name) {
 		if($data){
 			header('location:index.php');
 		}else{
-			header('location:upload.php?er=1');
+			header('location:change_propic.php?er=1');
 		}
 }else{
-	header('location:upload.php?er=2');
+	header('location:change_propic.php?er=2');
 }
 ?>

@@ -91,27 +91,19 @@ $totalfile=mysqli_num_rows($data1);
 				<div class="col-sm-4 signup_css">
 					<h2 class="text-center">Change</h2>
 					<?php
-						if ($_GET['er']==1) {
-							?>
-							<div class="alert alert-warning alert-dismissible">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Warning!</strong> Password not match 						
-							</div>
-							<?php
-						}
 						if ($_GET['er']==2) {
 							?>
 							<div class="alert alert-warning alert-dismissible">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Warning!</strong> Somthing wrong!!							
+								<strong>Warning!</strong> select first 						
 							</div>
 							<?php
 						}
-						if ($_GET['er']==4) {
+						if ($_GET['er']==1) {
 							?>
 							<div class="alert alert-warning alert-dismissible">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Warning!</strong> Old password is wrong							
+								<strong>Warning!</strong> Somthing wrong!!							
 							</div>
 							<?php
 						}
