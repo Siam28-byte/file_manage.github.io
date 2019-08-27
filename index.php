@@ -3,19 +3,17 @@ require('connection.php');
 session_start();
 session_regenerate_id( true);
 $uname=$_SESSION['uname'];
-if ($uname == true) 
-{
-	
-}else
+if (!$uname) 
 {
 	header("location:signin.php");
 }
-$query="select * from members where username='$uname'";
+//read user information from database
+$query="SELECT * from members where username='$uname'";
 $data=mysqli_query($conn,$query);
 $info=mysqli_fetch_assoc($data);
 $result_per_page=10;
 
-$query="select * from file_collection where username='$uname'";
+$query="SELECT * from file_collection where username='$uname'";
 $data1=mysqli_query($conn,$query);
 $totalfile=mysqli_num_rows($data1);
 //pageinaction
@@ -46,9 +44,12 @@ $data1=mysqli_query($conn,$sql);
 </head>
 <body>
 	<div class="container-fluid">
-		<?php
-		require('header.php');
-		?>
+		<div class="row">
+			<div class="col-sm-12 name_head" >
+				<a href="index.php"><h2 class="float-left some">Joy2362</h2></a>
+				<p class="float-right ">Keep your file safe</p>
+			</div>
+		</div>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
 		<a href="#" class="navbar-brand">
@@ -60,16 +61,16 @@ $data1=mysqli_query($conn,$sql);
 		<div class="collapse navbar-collapse" id="collapsenav">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a href="#" class="nav-link active">Home</a>
+					<a href="index.php" class="nav-link active">Home</a>
 				</li>
 				<li class="nav-item">
 					<div class="dropdown">
 						<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
 						<div class="dropdown-menu">
-							<a href="change_propic.php" class="dropdown-item ">Update Profile Pictute</a>
-							<a href="change.php" class="dropdown-item ">Change password</a>
-							<a href="delete.php" class="dropdown-item ">Delete profile</a>
-							<a href="logout.php" class="dropdown-item ">log out</a>
+							<a href="change_propic.php" class="dropdown-item">Update Profile Pictute</a>
+							<a href="change.php" class="dropdown-item">Change password</a>
+							<a href="delete.php" class="dropdown-item">Delete profile</a>
+							<a href="logout.php" class="dropdown-item">log out</a>
 						</div>
 					</div>
 				</li>
@@ -84,10 +85,10 @@ $data1=mysqli_query($conn,$sql);
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-2 profile">
-				<div class="pro_pic">
-				<img src="<?php echo $info['propic']; ?>" class="rounded-circle " align="middle">
-			</div>
+			<div class="col-sm-2 profile" >
+				<div id="profile">
+				<img src="<?php echo $info['propic']; ?>" class="rounded" >
+				</div>
 				<h2 class="text-center"> <?php echo $info['name']; ?> </h2>
 				<h4 class="text-center">Total file:<?php echo $totalfile; ?></h4>
 			</div>
@@ -96,17 +97,14 @@ $data1=mysqli_query($conn,$sql);
 					if ($totalfile != 0) {	
 						?>				
 						<table class="table table-hover table-dark table-striped"> 
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Category</th>
-									<th>Uploaded</th>
-									<th>Size</th>
-									<th>type</th>
-									<th colspan="2" class="text-center">Operation</th>
-								</tr>
-							</thead>
-						<tbody>
+							<tr>
+								<th>Name</th>
+								<th>Category</th>
+								<th>Uploaded</th>
+								<th>Size</th>
+								<th>type</th>
+								<th colspan="2" class="text-center">Operation</th>
+							</tr>
 						<?php					
 							while ($file=mysqli_fetch_assoc($data1)){
 								echo "<tr>"."<td>".$file['filename']."</td>";
@@ -119,18 +117,30 @@ $data1=mysqli_query($conn,$sql);
 							}
 								echo "</tr>";	
 						?>
-						</tbody>
 						</table>
-						<ul class="pagination justify-content-center">
 						<?php
-						echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
-						for ($i=1; $i <=$number_of_page ; $i++) { 
-							echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".$i."\">".$i."</a></li>";
+							if ($totalfile ==($result_per_page+1)) {
+							?>
+							<ul class="pagination justify-content-center">
+							<?php
+							if ($page==1) {
+								echo "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
+							}else{
+							echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
+							}
+							for ($i=1; $i <=$number_of_page ; $i++) { 
+								echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".$i."\">".$i."</a></li>";
+							}
+							if ($page==$number_of_page) {
+								echo "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
+							}else{
+								echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
+							}
+							?>
+						 	</ul>
+
+							<?php
 						}
-						echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
-						?>
-					 	</ul>
-						<?php
 					}else{
 						echo "<h2 class=\"text-center text-white\">No file uploaded yet</h2>";
 					}
@@ -138,8 +148,16 @@ $data1=mysqli_query($conn,$sql);
 			</div>
 		</div>
 	</div>
-	<?php 
-	require('footer.php');
-	?>
+	<footer id="footer" class="bg-dark fixed-bottom"> 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<p class="text-primary">Copyright &copy;2019 All right reserved by joy2362 </p>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+</footer>
 </body>
 </html>
