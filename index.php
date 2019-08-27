@@ -1,6 +1,7 @@
 <?php
 require('connection.php');
 session_start();
+session_regenerate_id( true);
 $uname=$_SESSION['uname'];
 if ($uname == true) 
 {
@@ -12,9 +13,22 @@ if ($uname == true)
 $query="select * from members where username='$uname'";
 $data=mysqli_query($conn,$query);
 $info=mysqli_fetch_assoc($data);
+$result_per_page=10;
+
 $query="select * from file_collection where username='$uname'";
 $data1=mysqli_query($conn,$query);
 $totalfile=mysqli_num_rows($data1);
+//pageinaction
+$number_of_page=ceil($totalfile/$result_per_page);
+if (!isset($_GET['page'])) {
+	$page=1;
+}else{
+	$page=$_GET['page'];
+}
+$this_page_first_result=($page-1)*$result_per_page;
+$sql="select * from file_collection where username='$uname' order by id desc
+limit ".$this_page_first_result .",".$result_per_page;
+$data1=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,8 +66,8 @@ $totalfile=mysqli_num_rows($data1);
 					<div class="dropdown">
 						<button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"><?php echo $info['name']; ?></button>
 						<div class="dropdown-menu">
-							<a href="change.php" class="dropdown-item ">Update Profile Pictute</a>
-							<a href="change.php" class="dropdown-item ">Edit profile</a>
+							<a href="change_propic.php" class="dropdown-item ">Update Profile Pictute</a>
+							<a href="change.php" class="dropdown-item ">Change password</a>
 							<a href="delete.php" class="dropdown-item ">Delete profile</a>
 							<a href="logout.php" class="dropdown-item ">log out</a>
 						</div>
@@ -82,16 +96,16 @@ $totalfile=mysqli_num_rows($data1);
 					if ($totalfile != 0) {	
 						?>				
 						<table class="table table-hover table-dark table-striped"> 
-						<thead>
-						<tr>
-						<th>Name</th>
-						<th>Category</th>
-						<th>Uploaded</th>
-						<th>Size</th>
-						<th>type</th>
-						<th colspan="2" class="text-center">Operation</th>
-						</tr>
-						</thead>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Category</th>
+									<th>Uploaded</th>
+									<th>Size</th>
+									<th>type</th>
+									<th colspan="2" class="text-center">Operation</th>
+								</tr>
+							</thead>
 						<tbody>
 						<?php					
 							while ($file=mysqli_fetch_assoc($data1)){
@@ -99,7 +113,7 @@ $totalfile=mysqli_num_rows($data1);
 								echo "<td>".$file['category']."</td>";
 								echo "<td>".$file['date']."</td>";
 								echo "<td>".$file['size']."</td>";
-								echo "<td>".pathinfo($file['fileloc'],PATHINFO_EXTENSION )."</td>";
+								echo "<td>".pathinfo($file['fileloc'],PATHINFO_EXTENSION)."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-info\" download=\" ". $file['fileloc']."\" href=\" ". $file['fileloc']." \">Download</a>"."</td>";
 								echo "<td>"."<a class=\"btn btn-outline-danger\" href=\" deletefile.php?id=".$file['id']." \">Delete</a>"."</td>";
 							}
@@ -107,6 +121,15 @@ $totalfile=mysqli_num_rows($data1);
 						?>
 						</tbody>
 						</table>
+						<ul class="pagination justify-content-center">
+						<?php
+						echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
+						for ($i=1; $i <=$number_of_page ; $i++) { 
+							echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".$i."\">".$i."</a></li>";
+						}
+						echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
+						?>
+					 	</ul>
 						<?php
 					}else{
 						echo "<h2 class=\"text-center text-white\">No file uploaded yet</h2>";
@@ -115,18 +138,8 @@ $totalfile=mysqli_num_rows($data1);
 			</div>
 		</div>
 	</div>
-	<footer id="footer" class="bg-dark fixed-bottom"> 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-4"></div>
-				<div class="col-sm-4">
-					<p class="text-primary">Copyright &copy;2019 All right reserved by joy2362 </p>
-				</div>
-				<div class="col-sm-4">
-				</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<?php 
+	require('footer.php');
+	?>
 </body>
 </html>

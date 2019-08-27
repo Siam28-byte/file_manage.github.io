@@ -6,7 +6,7 @@
 	$query="SELECT fileloc FROM file_collection WHERE id='$id'";
 	$data=mysqli_query($conn,$query);
 	$file=mysqli_fetch_assoc($data);
-	unlink($file);
+	unlink($file['fileloc']);
 	$query="DELETE FROM file_collection WHERE id=$id";
 	$data=mysqli_query($conn,$query);
 	header('location:index.php');

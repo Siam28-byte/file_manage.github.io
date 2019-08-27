@@ -2,6 +2,14 @@
 require('connection.php');
 error_reporting(0);
 session_start();
+session_regenerate_id( true);
+if ($uname == true) 
+{
+	
+}else
+{
+	header("location:signin.php");
+}
 $uname=$_SESSION['uname'];
 $query="SELECT * FROM  file_collection WHERE username='$uname'";
 $data=mysqli_query($conn,$query);

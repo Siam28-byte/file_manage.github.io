@@ -9,7 +9,7 @@ $gender=$_POST['gender'];
 $name= $_FILES["upic"]["name"];
 if($fname != "" && $uname != "" && $email != "" && $pass != "" && sha1($_POST['rpass'])!="" && $gender!=""){
 	if ($pass == sha1($_POST['rpass'])) {		
-		$name= $_FILES["upic"]["name"];
+		
 		if ($name == "") {			
 			if ($gender == "male") {
 				$folder="propic/male.png";
