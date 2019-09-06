@@ -92,7 +92,7 @@ $data1=mysqli_query($conn,$sql);
 				<h2 class="text-center"> <?php echo $info['name']; ?> </h2>
 				<h4 class="text-center">Total file:<?php echo $totalfile; ?></h4>
 			</div>
-			<div class="col-sm-9 " style="margin-top: 20px;">
+			<div class="col-sm-9 " style="margin-top: 20px;margin-bottom: 40px;">
 				<?php
 					if ($totalfile != 0) {	
 						?>				
@@ -118,35 +118,39 @@ $data1=mysqli_query($conn,$sql);
 						</table>
 						<?php
 							if ($totalfile ==($result_per_page+1)) {
-							?>
-							<ul class="pagination justify-content-center">
-							<?php
-							if ($page==1) {
-								echo "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
-							}else{
-							echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
+								?>
+								<ul class="pagination justify-content-center">
+								<?php
+								if ($page==1) {
+									echo "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
+								}else{
+								echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page-1)."\">Previous</a></li>";
+								}
+								for ($i=1; $i <=$number_of_page ; $i++) { 
+									if ($i==$page) {
+										echo "<li class=\"page-item active\"><a class=\"page-link\" href=\"index.php?page=".$i."\">".$i."</a></li>";
+									}else{
+									echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".$i."\">".$i."</a></li>";
+									}
+								}
+								if ($page==$number_of_page) {
+									echo "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
+								}else{
+									echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
+								}
+								?>
+							 	</ul>
+								<?php
 							}
-							for ($i=1; $i <=$number_of_page ; $i++) { 
-								echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".$i."\">".$i."</a></li>";
-							}
-							if ($page==$number_of_page) {
-								echo "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
-							}else{
-								echo "<li class=\"page-item\"><a class=\"page-link\" href=\"index.php?page=".($page+1)."\">Next</a></li>";
-							}
-							?>
-						 	</ul>
-
-							<?php
+						}else{
+							echo "<h2 class=\"text-center text-white\">No file uploaded yet</h2>";
 						}
-					}else{
-						echo "<h2 class=\"text-center text-white\">No file uploaded yet</h2>";
-					}
-					?>		
+						?>		
 			</div>
 		</div>
 	</div>
-	<footer id="footer" class="bg-dark fixed-bottom"> 
+	<footer id="footer" class="bg-dark fixed-bottom">
+	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4"></div>

@@ -1,5 +1,9 @@
 <?php
 error_reporting(0);
+session_start();
+if ($_SESSION['uname']) {
+	session_destroy();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
